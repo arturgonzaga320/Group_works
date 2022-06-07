@@ -1,0 +1,5 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory '/workspace/Projetos_Coletivos'
+gcc main.c -o main
+make: Leaving directory '/workspace/Projetos_Coletivos'
+ 
