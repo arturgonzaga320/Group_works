@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Jun  7 19:37:42 2022
+# Make data base, printed on Fri Jun 10 12:58:31 2022
 
 # Variables
 
@@ -33,7 +33,7 @@ rvm_path = /home/gitpod/.rvm
 # environment
 SUPERVISOR_ADDR = localhost:22999
 # environment
-SUPERVISOR_ENVVAR_OTS = https://gitpod.io/api/ots/get/ab9a2124-e0d6-41d0-8e3e-227d1174b0c8
+SUPERVISOR_ENVVAR_OTS = https://gitpod.io/api/ots/get/964fb195-3691-41d9-ad16-81c068bd6eb9
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
 # automatic
@@ -105,7 +105,7 @@ SDKMAN_PLATFORM = linuxx64
 # environment
 VSCODE_LOG_STACK = false
 # environment
-VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-15cf49af-7a84-40fe-b31c-3a42e5122139.sock
+VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-055fb7cd-f47c-4e8f-bd6b-f14009093c15.sock
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -147,7 +147,7 @@ LESSCLOSE = /usr/bin/lesspipe %s %s
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
 # environment
-GITPOD_CLI_APITOKEN = IWoKF1YhiJR5.UaeHsrgQ6C8UN4ufr2u
+GITPOD_CLI_APITOKEN = htSkHNjyvjxXpMt6LKzDzm-O6q5vVRUJ
 # automatic
 +F = $(notdir $+)
 # environment
@@ -177,7 +177,6 @@ NIX_PROFILES = /nix/var/nix/profiles/default /home/gitpod/.nix-profile
 # environment
 GITPOD_GIT_USER_NAME = Bernardo-O-Silva
 # environment
- 
 JAVA_HOME = /home/gitpod/.sdkman/candidates/java/current
 # default
 MAKE_VERSION := 4.2.1
@@ -276,7 +275,7 @@ NGINX_DOCROOT_IN_REPO = public
 # environment
 rvm_loaded_flag = 1
 # environment
-GITPOD_INSTANCE_ID = 21772d3d-3cb5-4106-81ff-67530e85c684
+GITPOD_INSTANCE_ID = b932ce0e-c169-4817-ade6-60fb88866be4
 # environment
 GITPOD_WORKSPACE_URL = https://arturgonzag-projetoscol-z95bnrvc0bb.ws-us47.gitpod.io
 # default
@@ -298,10 +297,9 @@ MY_RUBY_HOME = /home/gitpod/.rvm/rubies/ruby-2.7.6
 
 # Directories
 
-# . (device 2346, inode 1946163185): 9 files, no impossibilities.
+# . (device 2346, inode 336617178): 9 files, no impossibilities.
 
 # 9 files, no impossibilities in 1 directories.
- 
 
 # Implicit Rules
 
@@ -325,7 +323,7 @@ main.c:
 # Not a target:
 makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-07 19:36:16.904982789
+#  Last modified 2022-06-07 19:36:16
 #  File has been updated.
 #  Successfully updated.
 
@@ -356,6 +354,6 @@ main: main.c
 # strcache performance: lookups = 21 / hit rate = 33%
 # hash-table stats:
 # Load=14/8192=0%, Rehash=0, Collisions=1/21=5%
-# Finished Make data base on Tue Jun  7 19:37:42 2022
+# Finished Make data base on Fri Jun 10 12:58:31 2022
 
  

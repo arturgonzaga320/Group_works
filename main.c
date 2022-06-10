@@ -13,7 +13,7 @@ int main(int argc, char** argv){
     setlocale(LC_ALL,"");//Comando pros acentos aparecerem
 
     FILE *entrada;//Declaração do arquivo de entrada
-    int qtdOperacoes, comparador, *vetorTeste;//Vetores teste para colocar tudo certinho
+    int qtdOperacoes, comparador, Teste, numero;//Vetores teste para colocar tudo certinho
 
     //Interação com o usuário
     printf("\nCrie um arquivo chamado %centrada.txt%c e o coloque no MESMO DIRETÓRIO desse programa", ASPAS, ASPAS);
@@ -41,8 +41,8 @@ int main(int argc, char** argv){
             
             for (comparador = 0; comparador < qtdOperacoes; comparador++){
 
-                fscanf(entrada, "%d", &vetorTeste[comparador]);//Lê os números e os salva num vetor (depois a gente coloca na lista)
-                printf("\nTipo: FALTA! Valor: %d\n", vetorTeste[comparador]);//Imprime pra ver se tá indo
+                fscanf(entrada, "%d %d", &numero, &Teste);//Lê os números e os salva num vetor (depois a gente coloca na lista)
+                printf("\nTipo: %d Valor: %d\n", numero, Teste);//Imprime pra ver se tá indo
 
             }   
 
