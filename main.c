@@ -6,17 +6,16 @@
 #include <locale.h>//Biblioteca para incluir acentos
 #define SUCESSO 0
 #define ERRO 1
-#define ASPAS '"'
 
 int main(int argc, char** argv){
 
     setlocale(LC_ALL,"");//Comando pros acentos aparecerem
 
     FILE *entrada;//Declaração do arquivo de entrada
-    int qtdOperacoes, comparador, Teste, numero;//Vetores teste para colocar tudo certinho
+    int qtdOperacoes, comparador, valorInserido, tipo;// Declaração das Variáveis
 
     //Interação com o usuário
-    printf("\nCrie um arquivo chamado %centrada.txt%c e o coloque no MESMO DIRETÓRIO desse programa", ASPAS, ASPAS);
+    printf("\nCrie um arquivo chamado \"entrada.txt\" e o coloque no MESMO DIRETÓRIO desse programa");
     printf("\nNo arquivo entrada.txt, digite os comandos que você queira que o programa realize");
     printf("\nInstruções:\n\nQuantidade de comandos que deseja fazer\n1 x- Coloca o elemento x");
     printf("\n2 x- Retira o elemento x\n\nAperte enter quando já houver colocado: ");
@@ -41,8 +40,8 @@ int main(int argc, char** argv){
             
             for (comparador = 0; comparador < qtdOperacoes; comparador++){
 
-                fscanf(entrada, "%d %d", &numero, &Teste);//Lê os números e os salva num vetor (depois a gente coloca na lista)
-                printf("\nTipo: %d Valor: %d\n", numero, Teste);//Imprime pra ver se tá indo
+                fscanf(entrada, "%d %d", &tipo, &valorInserido);//Lê os números e os salva num int (depois a gente coloca na lista)
+                //printf("\nTipo: %d Valor: %d\n", tipo, valorInserido);//Imprime pra ver se tá indo
 
             }   
 
