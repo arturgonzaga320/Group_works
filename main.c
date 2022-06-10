@@ -35,8 +35,8 @@ int main(int argc, char** argv){
 
         while(!feof(entrada)){//Enquanto o fim do arquivo não chegar...
 
-            fscanf(entrada, "%d", &qtdOperacoes);//Lê a quantidade de operações
-            printf("\nQuantidade: %d\n", qtdOperacoes);//e as salva
+            fscanf(entrada, "%d", &qtdOperacoes);//Lê a quantidade de operações e as salva
+            //printf("\nQuantidade: %d\n", qtdOperacoes);
             
             for (comparador = 0; comparador < qtdOperacoes; comparador++){
 
