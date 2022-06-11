@@ -1,5 +1,5 @@
 // Junho, 2022
-// listas.h - Artur Gonzaga
+// listas.h - Artur Gonzaga && Bernardo de Oliveira
 // Desenvolvimento de Sistemas - COLTEC UFMG
 
 #include <stdint.h>

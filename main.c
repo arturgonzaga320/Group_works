@@ -1,56 +1,205 @@
-//Trabalho AEDS
+// Junho, 2022
+// Trabalho de AEDS [ Descobre estrutura ]
+// Artur Gonzaga && Bernardo de Oliveira
+// Turma 203, profa. Virgínia Mota
+// #ELMAIAFOREVER
 
-//Vou escrever diversos comentários pra você poder saber o que cada coisa faz, depois pode apagar se quiser
 
+// Bibliotecas
 #include <stdio.h>
-#include <locale.h>//Biblioteca para incluir acentos
+#include <stdlib.h>
+#include <stdint.h>
+#include <locale.h>
+#include "listas.h"
+
+// CONSTANTES
+#define VERDADEIRO 0
+#define FALSO 1
+#define INSERIR 1
+#define REMOVER 2
 #define SUCESSO 0
 #define ERRO 1
+#define TAM_MAX 14 + 1
+
+typedef uint8_t bool;
+
+void analisarEstados(bool prior, bool fila, bool pilha) {
+
+    int Verdade = 000;
+
+    if (prior == VERDADEIRO) Verdade += 100;
+    if (fila == VERDADEIRO) Verdade += 10;
+    if (pilha == VERDADEIRO) Verdade += 1;
+
+    switch (Verdade) {
+    case 0:
+        printf("impossible\n");
+        break;
+    case 1:
+        printf("stack\n");
+        break;
+    case 10:
+        printf("queue\n");
+        break;
+    case 11:
+        printf("not sure\n");
+        break;
+    case 100:
+        printf("priority queue\n");
+        break;
+    case 101:
+        printf("not sure\n");
+        break;
+    case 110:
+        printf("queue\n");
+        break;
+    case 111:
+        printf("not sure\n");
+        break;
+    }
+}
+
+
+bool whatIF_Fila(lista_t* lst_main, int info) {
+
+    lista_t* i_ponteiro = lst_main;
+
+    while (i_ponteiro->prox != NULL) {
+
+        i_ponteiro = i_ponteiro->prox;
+    }
+
+    if (info == i_ponteiro->info){
+
+        return VERDADEIRO;
+    }
+
+    else { return FALSO; }
+}
+
+
+bool whatIF_PriorFila(lista_t* lst_main, int info) {
+    
+    int info_maior = lst_main->info;
+    lista_t* i_ponteiro = lst_main;
+
+    while (i_ponteiro != NULL) {
+
+        if (i_ponteiro->info >= info_maior) {
+
+            info_maior = i_ponteiro->info;
+        }
+
+        i_ponteiro = i_ponteiro->prox;
+    }
+
+    if (info == info_maior) {
+
+        return VERDADEIRO;
+    }
+
+    else { return FALSO; }
+}
+
+bool whatIF_Pilha(lista_t* lst_main, int info) {
+
+    if (info == lst_main->info) {
+
+        return VERDADEIRO;
+    }
+
+    else { return FALSO; }
+}
 
 int main(int argc, char** argv){
 
     setlocale(LC_ALL,"");//Comando pros acentos aparecerem
 
-    FILE *entrada;//Declaração do arquivo de entrada
-    int qtdOperacoes, comparador, valorInserido, tipo;// Declaração das Variáveis
+    FILE *entrada;
+    lista_t* lst_main;
 
-    //Interação com o usuário
-    printf("\nCrie um arquivo chamado \"entrada.txt\" e o coloque no MESMO DIRETÓRIO desse programa");
-    printf("\nNo arquivo entrada.txt, digite os comandos que você queira que o programa realize");
-    printf("\nInstruções:\n\nQuantidade de comandos que deseja fazer\n1 x- Coloca o elemento x");
-    printf("\n2 x- Retira o elemento x\n\nAperte enter quando já houver colocado: ");
-    getchar();
-    
-    entrada = fopen("./entrada.txt", "r");//Abre o arquivo
+    int qtdOperacoes, comparador, valorInserido, tipo;
+
+    bool prior = FALSO;
+    bool fila = FALSO;
+    bool pilha = FALSO;
+
+    entrada = fopen("./entrada.txt", "r");
 
     if (entrada == NULL){//Testa se o arquivo foi aberto
 
         fputs("ERRO: O arquivo não pode ser encontrado\n", stderr);
-        return ERRO;//Retorna erro se o arquivo não for encontrado
-
+        return ERRO;
     }
+
     else if (entrada != NULL){
 
-        printf("Arquivo aberto com sucesso\n");//Mostra ao usuário que o arquivo foi aberto
+        while(!feof(entrada)){
 
-        while(!feof(entrada)){//Enquanto o fim do arquivo não chegar...
-
-            fscanf(entrada, "%d", &qtdOperacoes);//Lê a quantidade de operações e as salva
-            //printf("\nQuantidade: %d\n", qtdOperacoes);
+            qtdOperacoes = 0;
+            fscanf(entrada, "%d", &qtdOperacoes);
             
-            for (comparador = 0; comparador < qtdOperacoes; comparador++){
+            prior = FALSO;
+            fila = FALSO;
+            pilha = FALSO;
 
-                fscanf(entrada, "%d %d", &tipo, &valorInserido);//Lê os números e os salva num int (depois a gente coloca na lista)
-                //printf("\nTipo: %d Valor: %d\n", tipo, valorInserido);//Imprime pra ver se tá indo
+            int aux_prior = FALSO;
+            int aux_fila = FALSO;
+            int aux_pilha = FALSO;
 
-            }   
+            lst_main = lst_cria();
 
+            for (comparador = 0; comparador < qtdOperacoes; comparador++) {
+
+                fscanf(entrada, "%d %d", &tipo, &valorInserido);
+
+                switch (tipo) {
+
+                case INSERIR:
+                    lst_main = lst_insere(lst_main, valorInserido);
+                    break;
+                case REMOVER:
+
+                    if (lst_vazia(lst_main) == FALSO) {
+
+                        if (aux_prior == FALSO) {
+
+                            if (whatIF_PriorFila(lst_main, valorInserido) == VERDADEIRO) prior = VERDADEIRO;
+                            else aux_prior = VERDADEIRO;
+                        }
+
+                        if (aux_fila == FALSO) {
+
+                            if (whatIF_Fila(lst_main, valorInserido) == VERDADEIRO) fila = VERDADEIRO;
+                            else aux_fila = VERDADEIRO;
+                        }
+
+                        if (aux_pilha == FALSO) {
+
+                            if (whatIF_Pilha(lst_main, valorInserido) == VERDADEIRO) pilha = VERDADEIRO;
+                            else aux_pilha = VERDADEIRO;
+                        }
+
+                        lst_main = lst_retira_objetiva(lst_main, valorInserido);
+                    }
+                    break;
+                   
+                default:
+
+                    fputs("ERRO: comando invalido\n", stderr);
+                    return ERRO;
+                }
+            }
+                       
+            if (qtdOperacoes != 0) {
+
+                analisarEstados(prior, fila, pilha); 
+            }
+
+            lst_libera(lst_main);
         }
-
         fclose(entrada);
     }
-
-    
 
     return SUCESSO;
 }

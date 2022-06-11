@@ -1,5 +1,5 @@
 // Junho, 2022
-// listas.c - Artur Gonzaga
+// listas.c - Artur Gonzaga && Bernardo de Oliveira
 // Desenvolvimento de Sistemas - COLTEC UFMG
 
 #include <stdio.h>
@@ -11,21 +11,21 @@
 #define FALSO 1
 #define ERRO 1
 
-lista_t* lst_cria(){
+lista_t* lst_cria() {
 
 	return NULL;
 }
 
-bool lst_vazia (lista_t* lista_p){
-	
-	if (lista_p == NULL){
-		
+bool lst_vazia(lista_t* lista_p) {
+
+	if (lista_p == NULL) {
+
 		return VERDADEIRO;
 	}
 	else { return FALSO; }
 }
 
-lista_t* lst_insere (lista_t* lista_p, int info_param){
+lista_t* lst_insere(lista_t* lista_p, int info_param) {
 
 	lista_t* novo_elem;
 	novo_elem = (lista_t*)malloc(sizeof(lista_t));
@@ -54,22 +54,23 @@ void lst_retira(lista_t* lista_p) {
 
 lista_t* lst_retira_objetiva(lista_t* lista_p, int rm_info) {
 
-	if (lst_vazia(lista_p) == VERDADEIRO){
-		
+	if (lst_vazia(lista_p) == VERDADEIRO) {
+
 		return NULL;
 	}
 
 	lista_t* rm_elem = lista_p;
+
 	lista_t* pre_elem = NULL;
 
-	while ( (rm_elem->info != rm_info) && (rm_elem != NULL) ) {
+	while ((rm_elem->info != rm_info) && (rm_elem->prox != NULL)) {
 		pre_elem = rm_elem;
 		rm_elem = rm_elem->prox;
 	}
 
-	if ( rm_elem == NULL); // Elemento nao encontrado
-	
-	if ( pre_elem == NULL ) {
+	if (rm_elem == NULL); // Elemento nao encontrado
+
+	if (pre_elem == NULL) {
 
 		lista_p = rm_elem->prox;
 	}
@@ -82,8 +83,8 @@ lista_t* lst_retira_objetiva(lista_t* lista_p, int rm_info) {
 	return lista_p;
 }
 
-void lst_inverte(lista_t* lista_p){
-	
+void lst_inverte(lista_t* lista_p) {
+
 	if (lst_vazia(lista_p) == VERDADEIRO) {
 
 		return;
@@ -91,9 +92,9 @@ void lst_inverte(lista_t* lista_p){
 
 	int i = 0, n_elementos = 1;
 	int* vetor_valores;
- 		
-	for (lista_t* i_ponteiro = lista_p; i_ponteiro->prox != NULL; i_ponteiro = i_ponteiro->prox) { 
-		
+
+	for (lista_t* i_ponteiro = lista_p; i_ponteiro->prox != NULL; i_ponteiro = i_ponteiro->prox) {
+
 		n_elementos++;
 	}
 
@@ -101,7 +102,7 @@ void lst_inverte(lista_t* lista_p){
 
 	for (lista_t* i_ponteiro = lista_p; i_ponteiro != NULL; i_ponteiro = i_ponteiro->prox) {
 
-		vetor_valores[i]=i_ponteiro->info;
+		vetor_valores[i] = i_ponteiro->info;
 		i++;
 	}
 
@@ -109,7 +110,7 @@ void lst_inverte(lista_t* lista_p){
 		lst_retira(lista_p);
 	}
 
-	for (i = (n_elementos-1); i >= 0; i--) {
+	for (i = (n_elementos - 1); i >= 0; i--) {
 
 		lst_insere(lista_p, vetor_valores[i]);
 	}
@@ -117,14 +118,14 @@ void lst_inverte(lista_t* lista_p){
 	free(vetor_valores);
 }
 
-lista_t* lst_busca(lista_t* lista_p, int info_alvo){
-	
+lista_t* lst_busca(lista_t* lista_p, int info_alvo) {
+
 	lista_t* i_ponteiro;
-	
-	for (i_ponteiro = lista_p; i_ponteiro->prox != NULL; i_ponteiro = i_ponteiro->prox){
-		
-		if (i_ponteiro->info == info_alvo){
-			
+
+	for (i_ponteiro = lista_p; i_ponteiro->prox != NULL; i_ponteiro = i_ponteiro->prox) {
+
+		if (i_ponteiro->info == info_alvo) {
+
 			return i_ponteiro;
 		}
 	}
@@ -132,13 +133,13 @@ lista_t* lst_busca(lista_t* lista_p, int info_alvo){
 	return NULL;
 }
 
-void lst_imprime(lista_t* lista_p){
-	
+void lst_imprime(lista_t* lista_p) {
+
 	lista_t* i_ponteiro;
-	
-	for (i_ponteiro = lista_p; i_ponteiro != NULL; i_ponteiro = i_ponteiro->prox){
-		
-		printf("\t%d\n",i_ponteiro->info);
+
+	for (i_ponteiro = lista_p; i_ponteiro != NULL; i_ponteiro = i_ponteiro->prox) {
+
+		printf("\t%d\n", i_ponteiro->info);
 	}
 
 	free(i_ponteiro);
@@ -149,8 +150,8 @@ void lst_libera(lista_t* lista_p) {
 	lista_t* i_ponteiro = lista_p;
 
 	while (i_ponteiro != NULL) {
-		
-		lista_t* temp = i_ponteiro->prox; 
+
+		lista_t* temp = i_ponteiro->prox;
 		free(i_ponteiro);
 		i_ponteiro = temp;
 	}
